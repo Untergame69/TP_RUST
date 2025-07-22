@@ -14,10 +14,9 @@ Alternative moderne à C / C++ sans gestion manuelle de la mémoire (pas de `mal
 - `let nom = "Erwan";` → **immutable**
 - `let mut age = 20;` → **mutable**
 - `let` = déclaration
+- `mut` = rend la variable modifiable
 
 ```rust
-mut // rend la variable modifiable
-
 🧮 Types courants
 i32, u32, f64, bool, String
 
