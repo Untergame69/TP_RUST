@@ -125,7 +125,7 @@ Créer, afficher, déposer, retirer, fermer, lister les comptes.
 
 Utilise Vec<CompteBancaire>, loop, match, trait.
 
-##Exercices
+## Exercices
 
 Exercice 1 – Struct simple et méthodes
 Créer une struct Produit avec nom, prix, stock. Ajouter méthodes : afficher, vendre, restocker.
