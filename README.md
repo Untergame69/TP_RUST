@@ -1,30 +1,27 @@
-# TP_RUST
-tp rust
-🦀 Introduction à Rust – Notes de Cours
-⚙️ Pourquoi Rust ?
-Langage compilé, rapide, sûr en mémoire.
+# 🦀 TP_RUST
 
-Alternative moderne à C / C++ sans gestion manuelle de la mémoire (pas de malloc, pas de free).
+## 📚 Introduction
 
-Garantie d'absence de segfaults grâce au borrowing et au ownership.
+**Pourquoi Rust ?**  
+Langage compilé, rapide, sûr en mémoire.  
+Alternative moderne à C / C++ sans gestion manuelle de la mémoire (pas de `malloc`, pas de `free`).  
+✅ Garantie d'absence de segfaults grâce au *borrowing* et au *ownership*.
 
-📌 Concepts de base
-✅ Variables
-rust
-Copier
-Modifier
-let nom = "Erwan"; // immuable
-let mut age = 20;  // mutable
-let = déclaration.
+---
 
-mut = rend la variable modifiable.
+## 🧱 Concepts de base
+
+- `let nom = "Erwan";` → **immutable**
+- `let mut age = 20;` → **mutable**
+- `let` = déclaration
+
+```rust
+mut // rend la variable modifiable
 
 Types courants : i32, u32, f64, bool, String.
 
 ✅ Fonctions
 rust
-Copier
-Modifier
 fn addition(a: i32, b: i32) -> i32 {
     a + b
 }
