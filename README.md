@@ -31,9 +31,7 @@ fn définit une fonction.
 Pas besoin de return si la dernière ligne est une expression.
 
 ✅ Conditions & Boucles
-rust
-Copier
-Modifier
+
 if x > 0 { ... }
 for i in 0..5 { ... }
 while i < 10 { ... }
@@ -54,9 +52,7 @@ Vecteur (Vec<T>) = tableau dynamique.
 
 🧱 Struct et impl
 Exemple
-rust
-Copier
-Modifier
+
 struct CompteBancaire {
     nom: String,
     solde: f64,
@@ -77,9 +73,7 @@ impl = méthodes associées à la struct.
 &mut self = référence modifiable.
 
 🧬 Traits (≃ interfaces)
-rust
-Copier
-Modifier
+
 trait Animal {
     fn chanter(&self);
 }
@@ -97,9 +91,7 @@ trait ≈ interface en Java/C#.
 On utilise impl pour définir le comportement d’un trait.
 
 🎮 Interaction utilisateur (console)
-rust
-Copier
-Modifier
+
 use std::io;
 let mut input = String::new();
 io::stdin().read_line(&mut input).expect("Erreur lecture");
@@ -112,13 +104,10 @@ Créer, afficher, déposer, retirer, fermer, lister les comptes.
 
 Utilise Vec<CompteBancaire>, loop, match, trait.
 
-🧠 Exercices corrigés
+🧠 Exercices
 🔧 Exercice 1 – Struct simple et méthodes
 Créer une struct Produit avec nom, prix, stock. Ajouter méthodes : afficher, vendre, restocker.
 
-rust
-Copier
-Modifier
 struct Produit {
     nom: String,
     prix: f64,
@@ -160,9 +149,6 @@ fn main() {
 🔧 Exercice 2 – Mini Système de Banque Interactif
 Faire une boucle avec menu : créer compte, afficher, déposer, retirer, fermer, quitter.
 
-rust
-Copier
-Modifier
 use std::io;
 
 struct Compte {
