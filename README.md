@@ -168,7 +168,7 @@ fn main() {
 🔧 Exercice 2 – Mini Système de Banque Interactif
 Faire une boucle avec menu : créer compte, afficher, déposer, retirer, fermer, quitter.
 
-` ```rust
+```rust
 use std::io;
 struct Compte {
     nom: String,
@@ -251,4 +251,4 @@ fn main() {
         }
     }
 }
-`
+```
