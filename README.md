@@ -18,7 +18,8 @@ Alternative moderne à C / C++ sans gestion manuelle de la mémoire (pas de `mal
 ```rust
 mut // rend la variable modifiable
 
-Types courants : i32, u32, f64, bool, String.
+🧮 Types courants
+i32, u32, f64, bool, String
 
 ✅ Fonctions
 rust
