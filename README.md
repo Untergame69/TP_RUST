@@ -273,15 +273,84 @@ Exercice 3 : Reséau TCP avec gestion clients
 Objectif du TP
 Créer un serveur TCP en Rust qui :
 
-Accepte plusieurs connexions clients
-
-Garde une liste des clients connectés
-
-Utilise bien Ownership et Membership
-
-Utilise les bibliothèques :
+- Accepte plusieurs connexions clients
+- Garde une liste des clients connectés
+- Utilise bien Ownership et Membership
+- Utilise les bibliothèques :
 
 ```rust
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
+```
+
+Étapes de développement :
+
+1 Définir une structure Client
+Pour garder des infos de base sur les clients :
+
+```rust
+struct Client {
+    id: usize,
+    stream: TcpStream,
+}
+```
+
+2 Créer un serveur TCP basique
+
+```rust
+use std::net::{TcpListener, TcpStream};
+use std::io::{Read, Write};
+use std::thread;
+use std::sync::{Arc, Mutex};
+
+struct Client {
+    id: usize,
+    stream: TcpStream,
+}
+
+fn handle_client(mut stream: TcpStream, id: usize) {
+    let mut buffer = [0; 512];
+    loop {
+        match stream.read(&mut buffer) {
+            Ok(0) => {
+                println!("Client {} déconnecté", id);
+                break;
+            }
+            Ok(n) => {
+                println!("Client {}: {}", id, String::from_utf8_lossy(&buffer[..n]));
+                stream.write_all(b"Message bien reçu\n").unwrap();
+            }
+            Err(e) => {
+                println!("Erreur client {}: {}", id, e);
+                break;
+            }
+        }
+    }
+}
+
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:7878").expect("Erreur lors de la liaison");
+    println!("Serveur TCP en écoute sur le port 7878");
+
+    let mut id_counter = 0;
+
+    for stream in listener.incoming() {
+        match stream {
+            Ok(stream) => {
+                id_counter += 1;
+                println!("Nouveau client connecté avec l'ID {}", id_counter);
+
+                // On clone le stream pour le thread
+                let thread_stream = stream.try_clone().expect("Échec du clonage du stream");
+
+                thread::spawn(move || {
+                    handle_client(thread_stream, id_counter);
+                });
+            }
+            Err(e) => {
+                println!("Erreur de connexion: {}", e);
+            }
+        }
+    }
+}
 ```
