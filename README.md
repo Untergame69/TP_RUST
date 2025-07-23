@@ -267,3 +267,21 @@ fn main() {
     }
 }
 ```
+
+Exercice 3 : Reséau TCP avec gestion clients
+
+Objectif du TP
+Créer un serveur TCP en Rust qui :
+
+Accepte plusieurs connexions clients
+
+Garde une liste des clients connectés
+
+Utilise bien Ownership et Membership
+
+Utilise les bibliothèques :
+
+```rust
+use std::net::{TcpListener, TcpStream};
+use std::io::{Read, Write};
+```
