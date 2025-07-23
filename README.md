@@ -355,3 +355,10 @@ fn main() {
 }
 ```
  
+**Ce que ce code fait**
+
+- Il écoute sur le port 7878
+- À chaque connexion, il crée un nouveau Client (via id)
+- Il lance un thread pour gérer chaque client (concurrent)
+- Il utilise les principes d’ownership : stream est déplacé dans chaque thread (move)
+- Il répond à chaque client avec stream.write_all(...)
