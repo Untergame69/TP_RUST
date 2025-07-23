@@ -127,7 +127,7 @@ Utilise Vec<CompteBancaire>, loop, match, trait.
 
 ## Exercices
 
-Exercice 1 – Struct simple et méthodes
+**Exercice 1 – Struct simple et méthodes**
 Créer une struct Produit avec nom, prix, stock. Ajouter méthodes : afficher, vendre, restocker.
 
 ```rust
@@ -171,7 +171,7 @@ fn main() {
 }
 ```
 
-Exercice 2 – Mini Système de Banque Interactif
+**Exercice 2 – Mini Système de Banque Interactif**
 Faire une boucle avec menu : créer compte, afficher, déposer, retirer, fermer, quitter.
 
 ```rust
@@ -268,7 +268,7 @@ fn main() {
 }
 ```
 
-Exercice 3 : Reséau TCP avec gestion clients
+**Exercice 3 : Reséau TCP avec gestion clients**
 
 Objectif du TP
 Créer un serveur TCP en Rust qui :
@@ -362,3 +362,108 @@ fn main() {
 - Il lance un thread pour gérer chaque client (concurrent)
 - Il utilise les principes d’ownership : stream est déplacé dans chaque thread (move)
 - Il répond à chaque client avec stream.write_all(...)
+
+**Exercice Bonus**
+
+**Dépendance nécessaire**
+La ligne suivante est à ajouter dans ton Cargo.toml pour utiliser chrono (date/heure) :
+
+```rust
+[dependencies]
+chrono = "0.4"
+```
+
+**Code Rust : struct Fichier complète**
+
+```rust
+use std::fs::{File, OpenOptions};
+use std::io::{Write, Read};
+use std::path::Path;
+use chrono::{DateTime, Local};
+
+pub struct Fichier {
+    nom: String,
+    contenu: String,
+    date_creation: DateTime<Local>,
+}
+
+impl Fichier {
+    // Constructeur pour créer une nouvelle instance
+    pub fn new(nom: &str, contenu: &str) -> Self {
+        Fichier {
+            nom: nom.to_string(),
+            contenu: contenu.to_string(),
+            date_creation: Local::now(),
+        }
+    }
+
+    // Crée le fichier sur le disque avec le contenu actuel
+    pub fn creer_fichier(&self) -> std::io::Result<()> {
+        let mut file = File::create(&self.nom)?;
+        file.write_all(self.contenu.as_bytes())?;
+        Ok(())
+    }
+
+    // Méthode statique : crée directement un fichier avec nom et contenu
+    pub fn creer_avec_nom(nom: &str, contenu: &str) -> std::io::Result<()> {
+        let mut file = File::create(nom)?;
+        file.write_all(contenu.as_bytes())?;
+        Ok(())
+    }
+
+    // Modifier le contenu (remplace)
+    pub fn modifier_contenu(&mut self, nouveau_contenu: &str) {
+        self.contenu = nouveau_contenu.to_string();
+    }
+
+    // Ajouter du contenu (concatène)
+    pub fn ajouter_contenu(&mut self, contenu_sup: &str) {
+        self.contenu.push_str(contenu_sup);
+    }
+
+    // Vérifie si le fichier existe
+    pub fn existe(&self) -> bool {
+        Path::new(&self.nom).exists()
+    }
+
+    // Getters
+    pub fn get_nom(&self) -> &str {
+        &self.nom
+    }
+
+    pub fn get_contenu(&self) -> &str {
+        &self.contenu
+    }
+
+    pub fn get_date_creation(&self) -> DateTime<Local> {
+        self.date_creation
+    }
+}
+```
+
+**Exemple d’utilisation**
+
+```rust
+fn main() {
+    let mut mon_fichier = Fichier::new("mon_texte.txt", "Bonjour !");
+    
+    mon_fichier.creer_fichier().expect("Erreur à la création du fichier");
+    
+    mon_fichier.ajouter_contenu("\nSuite du texte.");
+    mon_fichier.modifier_contenu("Texte complètement remplacé.");
+    
+    println!("Nom : {}", mon_fichier.get_nom());
+    println!("Contenu : {}", mon_fichier.get_contenu());
+    println!("Existe ? {}", mon_fichier.existe());
+    println!("Date de création : {}", mon_fichier.get_date_creation());
+}
+```
+
+**Résumé des concepts utilisés**
+
+- new() pour créer une instance propre avec timestamp
+- creer_fichier() et creer_avec_nom() pour l’écriture
+- modifier_contenu() / ajouter_contenu() pour manipuler la string
+- chrono::Local::now() pour la date
+- std::fs::File / std::io::{Write, Read} pour manipuler les fichiers
+- Getters propres et clairs
