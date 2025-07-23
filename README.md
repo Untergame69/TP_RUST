@@ -54,7 +54,7 @@ let vec = vec![1, 2, 3];       // dynamique
 Utiliser enumerate() pour les index.
 ```
 
-Vecteur (Vec<T>) = tableau dynamique.
+Vecteur `(Vec<T>)` = tableau dynamique.
 
 Struct et impl
 
@@ -76,15 +76,15 @@ impl CompteBancaire {
 }
 ```
 
-struct = structure de données (comme une classe sans héritage).
+`struct` = structure de données (comme une classe sans héritage).
 
-impl = méthodes associées à la struct.
+`impl` = méthodes associées à la struct.
 
-&self = référence en lecture.
+`&self` = référence en lecture.
 
-&mut self = référence modifiable.
+`&mut self` = référence modifiable.
 
-Traits (≃ interfaces)
+`Traits` (≃ interfaces)
 
 ```rust
 trait Animal {
@@ -461,9 +461,9 @@ fn main() {
 
 **Résumé des concepts utilisés**
 
-- new() pour créer une instance propre avec timestamp
-- creer_fichier() et creer_avec_nom() pour l’écriture
-- modifier_contenu() / ajouter_contenu() pour manipuler la string
-- chrono::Local::now() pour la date
-- std::fs::File / std::io::{Write, Read} pour manipuler les fichiers
+- `new()` pour créer une instance propre avec timestamp
+- `creer_fichier()` et creer_avec_nom() pour l’écriture
+- `modifier_contenu()` / ajouter_contenu() pour manipuler la string
+- `chrono::Local::now()` pour la date
+- `std::fs::File / std::io::{Write, Read}` pour manipuler les fichiers
 - Getters propres et clairs
